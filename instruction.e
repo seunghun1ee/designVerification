@@ -31,7 +31,7 @@ extend instruction_s {
      check_response(ins : instruction_s) is only {
 
        check that ins.resp == 00 else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected response 0,\n \
                           received response %d.\n", 
@@ -39,7 +39,7 @@ extend instruction_s {
                           ins.resp));
 
        check that ins.dout == 0 else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected 0,\n \
                           received %032.32b \t %d.\n", 
@@ -56,7 +56,7 @@ extend instruction_s {
      check_response(ins : instruction_s) is only {
 
        check that ins.resp == 01 else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected response 1,\n \
                           received response %d.\n", 
@@ -64,7 +64,7 @@ extend instruction_s {
                           ins.resp));
 
        check that ins.dout == (ins.din1 + ins.din2) else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected %032.32b \t %d,\n \
                           received %032.32b \t %d.\n", 
@@ -83,7 +83,7 @@ extend instruction_s {
      check_response(ins : instruction_s) is only {
 
        check that ins.resp == 01 else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected response 1,\n \
                           received response %d.\n", 
@@ -91,7 +91,7 @@ extend instruction_s {
                           ins.resp));
 
        check that ins.dout == (ins.din1 - ins.din2) else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected %032.32b \t %d,\n \
                           received %032.32b \t %d.\n", 
@@ -110,7 +110,7 @@ extend instruction_s {
      check_response(ins : instruction_s) is only {
 
        check that ins.resp == 01 else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected response 1,\n \
                           received response %d.\n", 
@@ -118,7 +118,7 @@ extend instruction_s {
                           ins.resp));
 
        check that ins.dout == (ins.din1 << ins.din2) else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected %032.32b \t %d,\n \
                           received %032.32b \t %d.\n", 
@@ -137,7 +137,7 @@ extend instruction_s {
      check_response(ins : instruction_s) is only {
 
        check that ins.resp == 01 else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected response 1,\n \
                           received response %d.\n", 
@@ -145,13 +145,63 @@ extend instruction_s {
                           ins.resp));
 
        check that ins.dout == (ins.din1 >> ins.din2) else
-       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
                           Instruction %s %d %d,\n \
                           expected %032.32b \t %d,\n \
                           received %032.32b \t %d.\n", 
                           ins.cmd_in, ins.din1, ins.din2, 
                           (ins.din1 >> ins.din2),
                           (ins.din1 >> ins.din2), 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+   //Invalid command check
+   when INV'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %d %d,\n \
+                          expected response 2,\n \
+                          received response %d.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %d %d,\n \
+                          expected 0,\n \
+                          received %032.32b \t %d.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+   //Invalid command check
+   when INV1'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %d %d,\n \
+                          expected response 2,\n \
+                          received response %d.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %d %d,\n \
+                          expected 0,\n \
+                          received %032.32b \t %d.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
                           ins.dout,ins.dout));
 
      }; // check_response
