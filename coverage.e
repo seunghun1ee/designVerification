@@ -13,7 +13,10 @@ extend instruction_s {
    cover instruction_complete is {
       item cmd_in;
       item resp;
+      item din1;
+      item din2;
       cross cmd_in, resp;
+      cross cmd_in, din1, din2;
    }
 
 }; // extend instruction_s
