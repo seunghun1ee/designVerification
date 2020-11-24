@@ -25,6 +25,31 @@ struct instruction_s {
 
 extend instruction_s {
 
+   //No op checking
+   when NOP'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 00 else
+       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+                          Instruction %s %d %d,\n \
+                          expected response 0,\n \
+                          received response %d.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid output.<==R]\n \
+                          Instruction %s %d %d,\n \
+                          expected 0,\n \
+                          received %032.32b \t %d.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
    // example check for correct addition
    when ADD'cmd_in instruction_s { 
 
@@ -131,7 +156,7 @@ extend instruction_s {
 
      }; // check_response
 
-   }; // when 
+   }; // when
 
 }; // extend instruction_s
 

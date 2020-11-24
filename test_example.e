@@ -7,7 +7,7 @@
 <'
 
 extend instruction_s {
-   keep cmd_in in [ADD,SUB,SHL,SHR];
+   keep cmd_in in [ NOP, ADD, SUB, SHL, SHR ];
    keep din1 < 100;
    keep din2 < 10;
 }; // extend instruction_s
