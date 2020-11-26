@@ -8,8 +8,8 @@
 
 extend instruction_s {
    keep cmd_in in [ ADD, SUB, INV, INV1, SHL, SHR ];
-   keep din1 < 100;
-   keep din2 < 10;
+   keep din1 <= MAX_UINT;
+   keep din2 <= MAX_UINT;
 }; // extend instruction_s
 
 

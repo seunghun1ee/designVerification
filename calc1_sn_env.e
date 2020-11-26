@@ -17,6 +17,7 @@ import coverage;          //  pull in coverage metric and collection events
 extend sys {
 
    driver : driver_u is instance;
+   //driver.set_port(1);
 
    setup() is also {
 
