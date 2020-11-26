@@ -6,7 +6,7 @@
 
 <'
 
-type opcode_t : [ NOP, ADD, SUB, INV, INV1, SHL, SHR ] (bits:4);
+type opcode_t : [ NOP, ADD, SUB, INV, INV1, SHL, SHR, INV2, INV3, INV4, INV5, INV6, INV7, INV8, INV9, INV10 ] (bits:4);
 
 
 struct instruction_s {
