@@ -19,23 +19,20 @@ unit driver_u {
    reset_p : out simple_port of uint(bits:7) is instance; // driven by sn
    keep reset_p.hdl_path() == "~/calc1_sn/reset";
 
-   req1_cmd_in_p : out simple_port of uint(bits:4) is instance; // driven by sn
-   keep req1_cmd_in_p.hdl_path() == "~/calc1_sn/req1_cmd_in";
+   req_cmd_in_p : out simple_port of uint(bits:4) is instance; // driven by sn
 
-   req1_data_in_p : out simple_port of uint(bits:32) is instance; // driven by sn
-   keep req1_data_in_p.hdl_path() == "~/calc1_sn/req1_data_in";
+   req_data_in_p : out simple_port of uint(bits:32) is instance; // driven by sn
 
-   out_resp1_p : in simple_port of uint(bits:2) is instance; // read by sn
-   keep out_resp1_p.hdl_path() == "~/calc1_sn/out_resp1";
+   out_resp_p : in simple_port of uint(bits:2) is instance; // read by sn
 
-   out_data1_p : in simple_port of uint(bits:32) is instance; // read by sn
-   keep out_data1_p.hdl_path() == "~/calc1_sn/out_data1";
+   out_data_p : in simple_port of uint(bits:32) is instance; // read by sn
+
 
    //set_port(port_num : int) is {
-   //   req1_cmd_in_p.hdl_path() = appendf("~/calc1_sn/req%d_cmd_in",port_num);
-   //   req1_data_in_p.hdl_path() = appendf("~/calc1_sn/req%d_data_in",port_num);
-   //   out_resp1_p.hdl_path() = appendf("~/calc1_sn/out_resp%d",port_num);
-   //   out_data1_p.hdl_path() = appendf("~/calc1_sn/out_data%d",port_num);
+   //   req_cmd_in_p.hdl_path() == appendf("~/calc1_sn/req%d_cmd_in",port_num);
+   //   req_data_in_p.hdl_path() == appendf("~/calc1_sn/req%d_data_in",port_num);
+   //   out_resp_p.hdl_path() == appendf("~/calc1_sn/out_resp%d",port_num);
+   //   out_data_p.hdl_path() == appendf("~/calc1_sn/out_data%d",port_num);
    //};
 
   
@@ -44,7 +41,7 @@ unit driver_u {
 
 
    event clk is fall(clk_p$)@sim;
-   event resp is change(out_resp1_p$)@sim;
+   event resp is change(out_resp_p$)@sim;
 
 
    drive_reset() @clk is {
@@ -71,13 +68,13 @@ unit driver_u {
       out();
 
       // drive data into calculator port 1
-      req1_cmd_in_p$  = pack(NULL, ins.cmd_in);
-      req1_data_in_p$ = pack(NULL, ins.din1);
+      req_cmd_in_p$  = pack(NULL, ins.cmd_in);
+      req_data_in_p$ = pack(NULL, ins.din1);
          
       wait cycle;
 
-      req1_cmd_in_p$  = 0000;  
-      req1_data_in_p$ = pack(NULL, ins.din2);
+      req_cmd_in_p$  = 0000;  
+      req_data_in_p$ = pack(NULL, ins.din2);
          
    }; // drive_instruction
 
@@ -86,8 +83,8 @@ unit driver_u {
 
       wait @resp; -- wait for the response
          
-      ins.resp = out_resp1_p$;
-      ins.dout = out_data1_p$;
+      ins.resp = out_resp_p$;
+      ins.dout = out_data_p$;
 
    }; // collect_response
 

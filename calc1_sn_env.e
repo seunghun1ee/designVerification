@@ -16,8 +16,16 @@ import coverage;          //  pull in coverage metric and collection events
 
 extend sys {
 
-   driver : driver_u is instance;
-   //driver.set_port(1);
+   drivers : list of driver_u is instance;
+   keep drivers.size() == 4;
+   keep for each in drivers {
+      .req_cmd_in_p.hdl_path() == appendf("~/calc1_sn/req%d_cmd_in",index + 1);
+      .req_data_in_p.hdl_path() == appendf("~/calc1_sn/req%d_data_in",index + 1);
+      .out_resp_p.hdl_path() == appendf("~/calc1_sn/out_resp%d",index + 1);
+      .out_data_p.hdl_path() == appendf("~/calc1_sn/out_data%d",index + 1);
+   };
+
+
 
    setup() is also {
 
