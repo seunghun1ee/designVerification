@@ -26,15 +26,6 @@ unit driver_u {
    out_resp_p : in simple_port of uint(bits:2) is instance; // read by sn
 
    out_data_p : in simple_port of uint(bits:32) is instance; // read by sn
-
-
-   //set_port(port_num : int) is {
-   //   req_cmd_in_p.hdl_path() == appendf("~/calc1_sn/req%d_cmd_in",port_num);
-   //   req_data_in_p.hdl_path() == appendf("~/calc1_sn/req%d_data_in",port_num);
-   //   out_resp_p.hdl_path() == appendf("~/calc1_sn/out_resp%d",port_num);
-   //   out_data_p.hdl_path() == appendf("~/calc1_sn/out_data%d",port_num);
-   //};
-
   
 
    instructions_to_drive : list of instruction_s;

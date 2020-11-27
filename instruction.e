@@ -251,6 +251,232 @@ extend instruction_s {
 
    }; // when
 
+	//Invalid command check
+   when INV2'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV3'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV4'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV5'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV6'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV7'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV8'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV9'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+	//Invalid command check
+   when INV10'cmd_in instruction_s { 
+
+     check_response(ins : instruction_s) is only {
+
+       check that ins.resp == 02 else
+       dut_error(appendf("[R==>Port 1 invalid response output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected response 2,\n \
+                          received response %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.resp));
+
+       check that ins.dout == 0 else
+       dut_error(appendf("[R==>Port 1 invalid data output.<==R]\n \
+                          Instruction %s %u %u,\n \
+                          expected 0,\n \
+                          received %032.32b \t %u.\n", 
+                          ins.cmd_in, ins.din1, ins.din2, 
+                          ins.dout,ins.dout));
+
+     }; // check_response
+
+   }; // when
+
+
 }; // extend instruction_s
 
 
