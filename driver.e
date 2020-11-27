@@ -89,9 +89,16 @@ unit driver_u {
       for each (ins) in instructions_to_drive do {
        
          drive_instruction(ins, index);
-         collect_response(ins);
-         ins.check_response(ins, port_num);
-         wait cycle;
+			if ins.cmd_in == (0).as_a(opcode_t) {
+				first of {
+					{collect_response(ins); ins.check_response(ins, port_num)};
+					{wait [6] * cycle}
+				}; //first of
+			} else {
+		      collect_response(ins);
+		      ins.check_response(ins, port_num);
+		      wait cycle;
+			}; //if ins.cmd_in == NOP
 
       }; // for each instruction
 
