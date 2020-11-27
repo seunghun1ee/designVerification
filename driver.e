@@ -12,6 +12,8 @@
 
 
 unit driver_u {
+	
+	port_num : int;
 
    clk_p : inout simple_port of bit is instance; // can be driven or read by sn
    keep clk_p.hdl_path() == "~/calc1_sn/c_clk";
@@ -88,7 +90,7 @@ unit driver_u {
        
          drive_instruction(ins, index);
          collect_response(ins);
-         ins.check_response(ins);
+         ins.check_response(ins, port_num);
          wait cycle;
 
       }; // for each instruction
