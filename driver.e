@@ -90,13 +90,21 @@ unit driver_u {
        
          drive_instruction(ins, index);
 			if ins.cmd_in == (0).as_a(opcode_t) {
+            //For NOP, throw error if there's any response in 10 cycles
 				first of {
 					{collect_response(ins); ins.check_response(ins, port_num)};
-					{wait [6] * cycle}
+					{wait [10] * cycle}
 				}; //first of
 			} else {
-		      collect_response(ins);
-		      ins.check_response(ins, port_num);
+            //For all other opcodes, throw error after 10 cycles without response
+            first of {
+               {wait [10] * cycle;
+                  dut_error(appendf("[R==>Port %d no response for.<==R]\n \
+                          Instruction %s %u %u,\n",
+								  port_num, 
+                          ins.cmd_in, ins.din1, ins.din2))};
+               {collect_response(ins); ins.check_response(ins, port_num)}
+            }; //first of
 		      wait cycle;
 			}; //if ins.cmd_in == NOP
 
