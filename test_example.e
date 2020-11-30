@@ -15,6 +15,13 @@ extend instruction_s {
 
 extend driver_u {
    keep instructions_to_drive.size() == 100;
+   // Test 3.1 ADD 0 0
+   test3_1 : instruction_s;
+   keep test3_1.cmd_in == (1).as_a(opcode_t);
+   keep test3_1.din1 == 0;
+   keep test3_1.din2 == 0;
+   keep instructions_to_drive[0] == test3_1;
+ 
 }; // extend driver_u
 
 
