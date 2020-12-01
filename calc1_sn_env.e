@@ -32,7 +32,26 @@ extend sys {
 
       set_check("...", ERROR_CONTINUE);   // don't quit the simulation on error
 
-   }; 
+   };
+
+   post_generate() is also {
+		for each in drivers {
+         .instructions_to_drive.add(.test_3_1);
+			.instructions_to_drive.add(.test_3_2a);
+         .instructions_to_drive.add(.test_3_2b);
+         .instructions_to_drive.add(.test_3_3);
+         .instructions_to_drive.add(.test_3_4a);
+         .instructions_to_drive.add(.test_3_4b);
+         .instructions_to_drive.add(.test_3_6a);
+         .instructions_to_drive.add(.test_3_6b);
+         .instructions_to_drive.add(.test_4_1);
+         .instructions_to_drive.add(.test_4_2);
+         .instructions_to_drive.add(.test_4_3);
+         .instructions_to_drive.add(.test_4_4);
+         .instructions_to_drive.add(.test_4_7);
+		}
+   };
+
 
    run() is also {
 
