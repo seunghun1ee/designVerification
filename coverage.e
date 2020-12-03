@@ -164,6 +164,51 @@ extend instruction_s {
       cross cmd_in, din1, din2 using ignore = !((din1 >> 2) == din2);
    };
 
+   event shift_check_low;
+
+   cover shift_check_low using when = (cmd_in == SHL || cmd_in == SHR) is {
+      item cmd_in using ignore = !(cmd_in == SHL || cmd_in == SHR);
+      item din1 using ignore = !(din1 == 1 || din1 == MAX_UINT);
+      item din2 using ignore = !(din2 > 0 && din2 <= 16);
+      cross cmd_in, din1, din2;
+   };
+
+   event shift_check_high;
+
+   cover shift_check_high using when = (cmd_in == SHL || cmd_in == SHR) is {
+      item cmd_in using ignore = !(cmd_in == SHL || cmd_in == SHR);
+      item din1 using ignore = !(din1 == 1 || din1 == MAX_UINT);
+      item din2 using ignore = !(din2 > 16 && din2 <= 31);
+      cross cmd_in, din1, din2;
+   };
+
+   event shift_check_corner_cases;
+
+   cover shift_check_corner_cases using when = (cmd_in == SHL || cmd_in == SHR) is {
+      item cmd_in using ignore = !(cmd_in == SHL || cmd_in == SHR);
+      item din1 using ignore = !(din1 == 1 || din1 == MAX_UINT);
+      item din2 using ignore = !(din2 == 0 || din2 == 32 || din2 == MAX_UINT);
+      cross cmd_in, din1, din2;
+   };
+
+   event range_of_uints;
+
+   cover range_of_uints using when = (cmd_in == NOP || cmd_in == ADD || cmd_in == SUB || cmd_in == SHL || cmd_in == SHR) is {
+      item cmd_in using ignore = !(cmd_in == NOP || cmd_in == ADD || cmd_in == SUB || cmd_in == SHL || cmd_in == SHR);
+      item din1 using num_of_buckets = 16;
+      item din2 using num_of_buckets = 16;
+      cross cmd_in, din1, din2;
+   };
+
+   event range_of_uints_invalid_opcode;
+
+   cover range_of_uints_invalid_opcode using when = !(cmd_in == NOP || cmd_in == ADD || cmd_in == SUB || cmd_in == SHL || cmd_in == SHR) is {
+      item cmd_in using ignore = (cmd_in == NOP || cmd_in == ADD || cmd_in == SUB || cmd_in == SHL || cmd_in == SHR);
+      item din1 using num_of_buckets = 16;
+      item din2 using num_of_buckets = 16;
+      cross cmd_in, din1, din2;
+   };
+
 
 }; // extend instruction_s
 
@@ -187,6 +232,13 @@ extend driver_u {
       emit ins.sub_borrow_check_high;
       emit ins.sub_borrow_twice_check_low;
       emit ins.sub_borrow_twice_check_high;
+
+      emit ins.shift_check_low;
+      emit ins.shift_check_high;
+      emit ins.shift_check_corner_cases;
+
+      emit ins.range_of_uints;
+      emit ins.range_of_uints_invalid_opcode;
 
    };
 
