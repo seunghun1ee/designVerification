@@ -45,12 +45,26 @@ extend sys {
          .instructions_to_drive.add(.test_3_5);
          .instructions_to_drive.add(.test_3_6a);
          .instructions_to_drive.add(.test_3_6b);
-         
+
          .instructions_to_drive.add(.test_4_1);
          .instructions_to_drive.add(.test_4_2);
          .instructions_to_drive.add(.test_4_3);
          .instructions_to_drive.add(.test_4_4);
+         .instructions_to_drive.add(.test_4_5);
+         .instructions_to_drive.add(.test_4_6);
          .instructions_to_drive.add(.test_4_7);
+         .instructions_to_drive.add(.test_4_8a);
+         .instructions_to_drive.add(.test_4_8b);
+         .instructions_to_drive.add(.test_4_9);
+
+         .instructions_to_drive.add(.test_5_1);
+         .instructions_to_drive.add(.test_5_1a);
+         .instructions_to_drive.add(.test_5_2);
+         .instructions_to_drive.add(.test_5_2a);
+         .instructions_to_drive.add(.test_5_3);
+         .instructions_to_drive.add(.test_5_3a);
+         .instructions_to_drive.add(.test_5_4);
+         .instructions_to_drive.add(.test_5_4a);
 		}
    };
 
