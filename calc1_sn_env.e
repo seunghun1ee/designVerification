@@ -42,8 +42,10 @@ extend sys {
          .instructions_to_drive.add(.test_3_3);
          .instructions_to_drive.add(.test_3_4a);
          .instructions_to_drive.add(.test_3_4b);
+         .instructions_to_drive.add(.test_3_5);
          .instructions_to_drive.add(.test_3_6a);
          .instructions_to_drive.add(.test_3_6b);
+         
          .instructions_to_drive.add(.test_4_1);
          .instructions_to_drive.add(.test_4_2);
          .instructions_to_drive.add(.test_4_3);

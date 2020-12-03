@@ -14,7 +14,9 @@ extend instruction_s {
 
 
 extend driver_u {
+   // Randomised tests
    keep instructions_to_drive.size() == 50;
+
    // Test 3.1 ADD 0 0
    test_3_1 : instruction_s;
    keep test_3_1.cmd_in == (1).as_a(opcode_t);
@@ -59,6 +61,15 @@ extend driver_u {
    keep test_3_4b.cmd_in == (1).as_a(opcode_t);
    keep test_3_4b.din1 == 0b0101_0101_0101_0101_0101_0101_0101_0101;
    keep test_3_4b.din2 == 0b1010_1010_1010_1010_1010_1010_1010_1010;
+
+   // Test 3.5 check carry twice in a row
+   test_3_5 : list of instruction_s;
+   keep test_3_5.size() == 31;
+   keep for each in test_3_5 {
+      .cmd_in == (1).as_a(opcode_t);
+      .din1 == (3 << index);
+      .din2 == (1 << index);
+   };
 
    // Test 3.6a
    test_3_6a : instruction_s;
