@@ -60,6 +60,8 @@ unit driver_u {
       out("Op2     = ", ins.din2);
       out();
 
+      ins.port_num = port_num;
+
       // drive data into calculator port 1
       req_cmd_in_p$  = pack(NULL, ins.cmd_in);
       req_data_in_p$ = pack(NULL, ins.din1);

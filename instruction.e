@@ -11,14 +11,15 @@ type opcode_t : [ NOP, ADD, SUB, INV, INV1, SHL, SHR, INV2, INV3, INV4, INV5, IN
 
 struct instruction_s {
 
-   %cmd_in : opcode_t;
-   %din1   : uint (bits:32);
-   %din2   : uint (bits:32);
+  port_num : int;
+  %cmd_in : opcode_t;
+  %din1   : uint (bits:32);
+  %din2   : uint (bits:32);
 
-   !resp   : uint (bits:2);
-   !dout   : uint (bits:32);
+  !resp   : uint (bits:2);
+  !dout   : uint (bits:32);
 
-   check_response(ins : instruction_s, port_num : int) is empty;
+  check_response(ins : instruction_s, port_num : int) is empty;
 
 }; // struct instruction_s
 
@@ -187,16 +188,16 @@ extend instruction_s {
 								  port_num, 
                           ins.cmd_in, ins.din1, ins.din2, 
                           ins.resp));
-      if ins.din2 <= 32 then {
-       check that ins.dout == (ins.din1 >> ins.din2) else
+      if ins.din2 < 32 then {
+       check that ins.dout == (ins.din1 / (ipow(2,ins.din2))) else
        dut_error(appendf("[R==>Port %d invalid data output.<==R]\n \
                           Instruction %s %032.32b (%u) %u,\n \
                           expected %032.32b \t %u,\n \
                           received %032.32b \t %u.\n",
 								  port_num, 
                           ins.cmd_in, ins.din1, ins.din1, ins.din2, 
-                          (ins.din1 >> ins.din2),
-                          (ins.din1 >> ins.din2), 
+                          (ins.din1 / (ipow(2,ins.din2))),
+                          (ins.din1 / (ipow(2,ins.din2))), 
                           ins.dout,ins.dout));
       } else {
         check that ins.dout == 0 else
