@@ -20,6 +20,7 @@ extend sys {
    keep drivers.size() == 4;
    keep for each in drivers {
 		.port_num == index + 1;
+      .finished == FALSE;
       .req_cmd_in_p.hdl_path() == appendf("~/calc1_sn/req%d_cmd_in",index + 1);
       .req_data_in_p.hdl_path() == appendf("~/calc1_sn/req%d_data_in",index + 1);
       .out_resp_p.hdl_path() == appendf("~/calc1_sn/out_resp%d",index + 1);
